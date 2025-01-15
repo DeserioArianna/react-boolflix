@@ -9,7 +9,13 @@ const NavbarFlix = () => {
    
     const handleClick = () => {
         movieTv();
-    }
+    };
+    
+    const handleKeyUp = (event) => {
+        if (event.key === "Enter") {
+            movieTv();
+        };
+    };
 
     const movieTv = () => {
         axios.get(`${urlMovie}&query=${query}`).then((resp) => {
@@ -21,7 +27,7 @@ const NavbarFlix = () => {
                 vote: curMovie.vote_average,
                 image: curMovie.poster_path
             }));
-            // console.log(moviesData)
+            //console.log(moviesData)
             setMovies(moviesData);
         });
         axios.get(`${urlTv}&query=${query}`).then((resp) => {
@@ -49,8 +55,9 @@ const NavbarFlix = () => {
                             type="search"
                             value={query}
                             onChange={(event) => setQuery(event.target.value)}
-                            placeholder="Cerca un film o una serie tv" />
-                        <button id="search" onClick={handleClick}>Cerca</button>
+                            placeholder="Cerca un film o una serie tv"
+                            onKeyUp={handleKeyUp} />
+                        <button id="search" onClick={handleClick} onKeyUp={handleKeyUp}>Cerca</button>
                     </div>
                 </nav>
             </header>

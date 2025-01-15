@@ -46,13 +46,14 @@
 .p-fixed {
     position: fixed;
     width: 100%;
+    z-index: 1;
 }
 
 .card {
     padding: 50px 0 0 50px; 
     gap: 20px;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap; 
 }
 
 .card > .card-body {  

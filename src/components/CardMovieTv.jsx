@@ -7,15 +7,17 @@ const CardMovieTv = () => {
 
     return (
         <>
-            <h2>Film :</h2>
+            {movies.length > 0 && (
+                <h2>Film :</h2> // Mostra solo se ci sono film
+            )}
             <div className="card">
                 {movies.map((movie) => (
                     <div className="card-body" key={movie.id}>
-                        <img src={`${urlImage}/w342/${movie.image}`} alt={movie.title} />
+                        <img src={movie.image === null ? "images/poster-non-trovato.jpg" : `${urlImage}/w342/${movie.image}`} alt={movie.title} />
                         <div className="overlay">
                             <h3>{movie.title}</h3>
                             <h4>{movie.originalTitle}</h4>
-                            <p className="flag">Language: {movie.language === "en" ? <img src="images/en.png"></img> : movie.language === "it" ? <img src="images/it.png"></img> : <img src="images/placeholder.png"></img> }</p>
+                            <p className="flag">Language: {movie.language === "en" ? <img src="images/en.png"></img> : movie.language === "it" ? <img src="images/it.png"></img> : <img src="images/placeholder.png"></img>}</p>
                             <p>Vote: {Math.ceil(movie.vote / 2)}</p>
                             <div>
                                 {starsArray.map((index) =>
@@ -35,7 +37,9 @@ const CardMovieTv = () => {
                 ))}
             </div>
 
-            <h2>Serie Tv :</h2>
+            {movies.length > 0 && (
+                <h2>Film :</h2> // Mostra solo se ci sono film
+            )}
             <div className="card">
                 {tvShows.map((tvShow) => (
                     <div className="card-body" key={tvShow.id}>
@@ -43,7 +47,7 @@ const CardMovieTv = () => {
                         <div className="overlay">
                             <h3>{tvShow.title}</h3>
                             <h4>{tvShow.originalTitle}</h4>
-                            <p className="flag">Language: {tvShow.language === "en" ? <img src="images/en.png"></img> : tvShow.language === "it" ? <img src="images/it.png"></img> : <img src="images/placeholder.png"></img> }</p>
+                            <p className="flag">Language: {tvShow.language === "en" ? <img src="images/en.png"></img> : tvShow.language === "it" ? <img src="images/it.png"></img> : <img src="images/placeholder.png"></img>}</p>
                             <p>Vote: {Math.ceil(tvShow.vote / 2)}</p>
                             <div>
                                 {starsArray.map((index) =>
