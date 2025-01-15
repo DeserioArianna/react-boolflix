@@ -1,9 +1,12 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
 const GlobalStateContext = createContext();
 
+const useGlobalStateContext = () => {
+   return useContext(GlobalStateContext);
+}
+
 const GlobalStateProvider = ({ children }) => {
-    const [query, setQuery] = useState("");
     const [movies, setMovies] = useState([]);
     const [tvShows, setTvShows] = useState([]);
 
@@ -11,12 +14,12 @@ const GlobalStateProvider = ({ children }) => {
     const basicUrl = "https://api.themoviedb.org/3/search";
     const urlMovie = `${basicUrl}/movie?api_key=${apiKey}`;
     const urlTv = `${basicUrl}/tv?api_key=${apiKey}`;
+    const urlImage = "https://image.tmdb.org/t/p/";
 
     return (
         <GlobalStateContext.Provider
             value={{
-                query,
-                setQuery,
+                urlImage,
                 movies,
                 setMovies,
                 tvShows,
@@ -32,5 +35,5 @@ const GlobalStateProvider = ({ children }) => {
 
 export {
     GlobalStateProvider,
-    GlobalStateContext
+    useGlobalStateContext
 };
